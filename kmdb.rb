@@ -54,42 +54,71 @@ Movie.destroy_all
 Actor.destroy_all
 Role.destroy_all
 
+# Studios table data inputs
+
+new_studio = Studio.new
+new_studio["studio_name"] = "Warner Bros."
+new_studio.save
+
+
 # Movies table data inputs
-)
+
+warner_bros = Studio.find_by({ "studio_name" => "Warner Bros." })
 
 new_movie = Movie.new
 new_movie["title"] = "Batman Begins"
 new_movie["year_released"] = "2005"
 new_movie["rating"] = "PG-13"
+new_movie["studio_id"] = warners_bros["id"]
 new_movie.save
 
 new_movie = Movie.new
 new_movie["title"] = "The Dark Knight"
 new_movie["year_released"] = "2008"
 new_movie["rating"] = "PG-13"
+new_movie["studio_id"] = warners_bros["id"]
 new_movie.save
 
 new_movie = Movie.new
 new_movie["title"] = "The Dark Knight Rises"
 new_movie["year_released"] = "2012"
 new_movie["rating"] = "PG-13"
+new_movie["studio_id"] = warners_bros["id"]
 new_movie.save
-
-puts "movies: #{Movie.all.count}"
 
 # Actors table data inputs
 
-batman_begins = Movie.find_by({ "title" => "Batman Begins" })
+new_actor = Actor.new
+new_actor["actor_name"] = "Christian Bale"
+new_actor.save
 
 new_actor = Actor.new
-new_actor["first_name"] = "Christian"
-new_actor["last_name"] = "Bale"
-new_actor["movie_id"] = batman_begins["id"]
+new_actor["actor_name"] = "Michael Caine"
+new_actor.save
 
-t.string "first_name"
-t.string "last_name"
-t.integer "movie_id"
-t.integer "role_id"
+new_actor = Actor.new
+new_actor["actor_name"] = "Liam Neeson"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["actor_name"] = "Katie Holmes"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["actor_name"] = "Gary Oldman"
+new_actor.save
+
+# Roles table data inputs
+
+batman_begins = Movie.find_by({ "title" => "Batman Begins" })
+christian_bale = Actor.find_by({"actor_name" => "Christian Bale"})
+
+new_role = Role.new
+new_role["character_name"] = "Bruce Wayne"
+new_role["movie_id"] = batman_begins["id"]
+new_role["actor_id"] = christian_bale["id"]
+new_role.save
+
 
 -- Batman Begins
 INSERT INTO actors (name) VALUES ("Christian Bale"); -- 1
