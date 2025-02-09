@@ -25,9 +25,19 @@
 # - Generate the models and migration files to match the domain model from hw1.
 #   Table and columns should match the domain model. Execute the migration
 #   files to create the tables in the database. (5 points)
+
+
+
+
 # - Insert the "Batman" sample data using ruby code. Do not use hard-coded ids.
 #   Delete any existing data beforehand so that each run of this script does not
 #   create duplicate data. (5 points)
+
+
+
+
+
+
 # - Query the data and loop through the results to display output similar to the
 #   sample "report" below. (10 points)
 # - You are welcome to use external resources for help with the assignment (including
@@ -44,6 +54,15 @@
 # - When done, commit and sync a final time before submitting the GitHub
 #   URL for the finished "hw2" repository as the "Website URL" for the 
 #   Homework 2 assignment in Canvas
+
+
+Studio.destroy_all
+Movie.destroy_all
+Actor.destroy_all
+Role.destroy_all
+
+
+
 
 # Successful sample output is as shown:
 
