@@ -61,7 +61,25 @@ Movie.destroy_all
 Actor.destroy_all
 Role.destroy_all
 
+new_movie = Movie.new
+new_movie["title"] = "Batman Begins"
+new_movie["year_released"] = "2005"
+new_movie["rating"] = "PG-13"
+new_movie.save
 
+new_movie = Movie.new
+new_movie["title"] = "The Dark Knight"
+new_movie["year_released"] = "2008"
+new_movie["rating"] = "PG-13"
+new_movie.save
+
+new_movie = Movie.new
+new_movie["title"] = "The Dark Knight Rises"
+new_movie["year_released"] = "2012"
+new_movie["rating"] = "PG-13"
+new_movie.save
+
+puts "movies: #{Movie.all.count}"
 
 
 # Successful sample output is as shown:
