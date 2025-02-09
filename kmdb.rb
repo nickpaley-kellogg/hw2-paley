@@ -26,20 +26,13 @@
 #   Table and columns should match the domain model. Execute the migration
 #   files to create the tables in the database. (5 points)
 
-
-
-
 # - Insert the "Batman" sample data using ruby code. Do not use hard-coded ids.
 #   Delete any existing data beforehand so that each run of this script does not
 #   create duplicate data. (5 points)
 
-
-
-
-
-
 # - Query the data and loop through the results to display output similar to the
 #   sample "report" below. (10 points)
+
 # - You are welcome to use external resources for help with the assignment (including
 #   colleagues, AI, internet search, etc). However, the solution you submit must
 #   utilize the skills and strategies covered in class. Alternate solutions which
@@ -61,6 +54,9 @@ Movie.destroy_all
 Actor.destroy_all
 Role.destroy_all
 
+# Movies table data inputs
+)
+
 new_movie = Movie.new
 new_movie["title"] = "Batman Begins"
 new_movie["year_released"] = "2005"
@@ -80,6 +76,55 @@ new_movie["rating"] = "PG-13"
 new_movie.save
 
 puts "movies: #{Movie.all.count}"
+
+# Actors table data inputs
+
+batman_begins = Movie.find_by({ "title" => "Batman Begins" })
+
+new_actor = Actor.new
+new_actor["first_name"] = "Christian"
+new_actor["last_name"] = "Bale"
+new_actor["movie_id"] = batman_begins["id"]
+
+t.string "first_name"
+t.string "last_name"
+t.integer "movie_id"
+t.integer "role_id"
+
+-- Batman Begins
+INSERT INTO actors (name) VALUES ("Christian Bale"); -- 1
+INSERT INTO actors (name) VALUES ("Michael Caine"); -- 2
+INSERT INTO actors (name) VALUES ("Liam Neeson");  -- 3
+INSERT INTO actors (name) VALUES ("Katie Holmes");  -- 4
+INSERT INTO actors (name) VALUES ("Gary Oldman");  -- 5
+
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 1, "Bruce Wayne");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 2, "Alfred");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 3, "Ra's Al Ghul");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 4, "Rachel Dawes");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 5, "Commissioner Gordon");
+
+-- The Dark Knight
+INSERT INTO actors (name) VALUES ("Heath Ledger"); -- 6
+INSERT INTO actors (name) VALUES ("Aaron Eckhart"); -- 7
+INSERT INTO actors (name) VALUES ("Maggie Gyllenhaal"); -- 8
+
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 1, "Bruce Wayne");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 6, "Joker");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 7, "Harvey Dent");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 2, "Alfred");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 8, "Rachel Dawes");
+
+-- The Dark Knight Rises
+INSERT INTO actors (name) VALUES ("Tom Hardy"); -- 9
+INSERT INTO actors (name) VALUES ("Joseph Gordon-Levitt"); -- 10
+INSERT INTO actors (name) VALUES ("Anne Hathaway"); -- 11
+
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 1, "Bruce Wayne");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 5, "Commissioner Gordon");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 9, "Bane");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 10, "John Blake");
+INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 11, "Selina Kyle");
 
 
 # Successful sample output is as shown:

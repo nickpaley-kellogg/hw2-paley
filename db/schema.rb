@@ -12,10 +12,7 @@
 
 ActiveRecord::Schema[7.1].define(version: 2025_02_09_224936) do
   create_table "actors", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.integer "movie_id"
-    t.integer "role_id"
+    t.string "actor_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,13 +21,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_09_224936) do
     t.string "title"
     t.integer "year_released"
     t.string "rating"
+    t.integer "studio_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string "character_first_name"
-    t.string "character_last_name"
+    t.string "character_name"
     t.integer "movie_id"
     t.integer "actor_id"
     t.datetime "created_at", null: false
@@ -39,7 +36,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_09_224936) do
 
   create_table "studios", force: :cascade do |t|
     t.string "studio_name"
-    t.string "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
