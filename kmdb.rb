@@ -69,21 +69,21 @@ new_movie = Movie.new
 new_movie["title"] = "Batman Begins"
 new_movie["year_released"] = "2005"
 new_movie["rating"] = "PG-13"
-new_movie["studio_id"] = warners_bros["id"]
+new_movie["studio_id"] = warner_bros["id"]
 new_movie.save
 
 new_movie = Movie.new
 new_movie["title"] = "The Dark Knight"
 new_movie["year_released"] = "2008"
 new_movie["rating"] = "PG-13"
-new_movie["studio_id"] = warners_bros["id"]
+new_movie["studio_id"] = warner_bros["id"]
 new_movie.save
 
 new_movie = Movie.new
 new_movie["title"] = "The Dark Knight Rises"
 new_movie["year_released"] = "2012"
 new_movie["rating"] = "PG-13"
-new_movie["studio_id"] = warners_bros["id"]
+new_movie["studio_id"] = warner_bros["id"]
 new_movie.save
 
 # Actors table data inputs
@@ -110,7 +110,10 @@ new_actor.save
 
 # Roles table data inputs
 
+# Batman Begins
+
 batman_begins = Movie.find_by({ "title" => "Batman Begins" })
+
 christian_bale = Actor.find_by({"actor_name" => "Christian Bale"})
 
 new_role = Role.new
@@ -119,41 +122,72 @@ new_role["movie_id"] = batman_begins["id"]
 new_role["actor_id"] = christian_bale["id"]
 new_role.save
 
+michael_caine = Actor.find_by({"actor_name" => "Michael Caine"})
 
--- Batman Begins
-INSERT INTO actors (name) VALUES ("Christian Bale"); -- 1
-INSERT INTO actors (name) VALUES ("Michael Caine"); -- 2
-INSERT INTO actors (name) VALUES ("Liam Neeson");  -- 3
-INSERT INTO actors (name) VALUES ("Katie Holmes");  -- 4
-INSERT INTO actors (name) VALUES ("Gary Oldman");  -- 5
+new_role = Role.new
+new_role["character_name"] = "Alfred"
+new_role["movie_id"] = batman_begins["id"]
+new_role["actor_id"] = michael_caine["id"]
+new_role.save
 
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 1, "Bruce Wayne");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 2, "Alfred");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 3, "Ra's Al Ghul");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 4, "Rachel Dawes");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 5, "Commissioner Gordon");
+liam_neeson = Actor.find_by({"actor_name" => "Liam Neeson"})
 
--- The Dark Knight
-INSERT INTO actors (name) VALUES ("Heath Ledger"); -- 6
-INSERT INTO actors (name) VALUES ("Aaron Eckhart"); -- 7
-INSERT INTO actors (name) VALUES ("Maggie Gyllenhaal"); -- 8
+new_role = Role.new
+new_role["character_name"] = "Ra's Al Ghul"
+new_role["movie_id"] = batman_begins["id"]
+new_role["actor_id"] = liam_neeson["id"]
+new_role.save
 
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 1, "Bruce Wayne");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 6, "Joker");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 7, "Harvey Dent");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 2, "Alfred");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 8, "Rachel Dawes");
+katie_holmes = Actor.find_by({"actor_name" => "Katie Holmes"})
 
--- The Dark Knight Rises
-INSERT INTO actors (name) VALUES ("Tom Hardy"); -- 9
-INSERT INTO actors (name) VALUES ("Joseph Gordon-Levitt"); -- 10
-INSERT INTO actors (name) VALUES ("Anne Hathaway"); -- 11
+new_role = Role.new
+new_role["character_name"] = "Rachel Dawes"
+new_role["movie_id"] = batman_begins["id"]
+new_role["actor_id"] = katie_holmes["id"]
+new_role.save
 
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 1, "Bruce Wayne");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 5, "Commissioner Gordon");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 9, "Bane");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 10, "John Blake");
-INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 11, "Selina Kyle");
+gary_oldman = Actor.find_by({"actor_name" => "Gary Oldman"})
+
+new_role = Role.new
+new_role["character_name"] = "Commissioner Gordon"
+new_role["movie_id"] = batman_begins["id"]
+new_role["actor_id"] = gary_oldman["id"]
+new_role.save
+
+#-- Batman Begins
+#INSERT INTO actors (name) VALUES ("Christian Bale"); -- 1
+#INSERT INTO actors (name) VALUES ("Michael Caine"); -- 2
+#INSERT INTO actors (name) VALUES ("Liam Neeson");  -- 3
+#INSERT INTO actors (name) VALUES ("Katie Holmes");  -- 4
+#INSERT INTO actors (name) VALUES ("Gary Oldman");  -- 5
+
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 1, "Bruce Wayne");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 2, "Alfred");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 3, "Ra's Al Ghul");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 4, "Rachel Dawes");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 5, "Commissioner Gordon");
+
+#-- The Dark Knight
+#INSERT INTO actors (name) VALUES ("Heath Ledger"); -- 6
+#INSERT INTO actors (name) VALUES ("Aaron Eckhart"); -- 7
+#INSERT INTO actors (name) VALUES ("Maggie Gyllenhaal"); -- 8
+
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 1, "Bruce Wayne");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 6, "Joker");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 7, "Harvey Dent");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 2, "Alfred");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 8, "Rachel Dawes");
+
+#-- The Dark Knight Rises
+#INSERT INTO actors (name) VALUES ("Tom Hardy"); -- 9
+#INSERT INTO actors (name) VALUES ("Joseph Gordon-Levitt"); -- 10
+#INSERT INTO actors (name) VALUES ("Anne Hathaway"); -- 11
+
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 1, "Bruce Wayne");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 5, "Commissioner Gordon");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 9, "Bane");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 10, "John Blake");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 11, "Selina Kyle");
 
 
 # Successful sample output is as shown:
