@@ -108,9 +108,33 @@ new_actor = Actor.new
 new_actor["actor_name"] = "Gary Oldman"
 new_actor.save
 
+new_actor = Actor.new
+new_actor["actor_name"] = "Heath Ledger"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["actor_name"] = "Aaron Eckhart"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["actor_name"] = "Maggie Gyllenhaal"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["actor_name"] = "Anne Hathaway"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["actor_name"] = "Joseph Gordon-Levitt"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["actor_name"] = "Tom Hardy"
+new_actor.save
+
 # Roles table data inputs
 
-# Batman Begins
+# -- Batman Begins
 
 batman_begins = Movie.find_by({ "title" => "Batman Begins" })
 
@@ -154,40 +178,39 @@ new_role["movie_id"] = batman_begins["id"]
 new_role["actor_id"] = gary_oldman["id"]
 new_role.save
 
-#-- Batman Begins
-#INSERT INTO actors (name) VALUES ("Christian Bale"); -- 1
-#INSERT INTO actors (name) VALUES ("Michael Caine"); -- 2
-#INSERT INTO actors (name) VALUES ("Liam Neeson");  -- 3
-#INSERT INTO actors (name) VALUES ("Katie Holmes");  -- 4
-#INSERT INTO actors (name) VALUES ("Gary Oldman");  -- 5
+# -- The Dark Knight
 
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 1, "Bruce Wayne");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 2, "Alfred");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 3, "Ra's Al Ghul");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 4, "Rachel Dawes");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 5, "Commissioner Gordon");
+dark_knight = Movie.find_by({ "title" => "The Dark Knight" })
 
-#-- The Dark Knight
-#INSERT INTO actors (name) VALUES ("Heath Ledger"); -- 6
-#INSERT INTO actors (name) VALUES ("Aaron Eckhart"); -- 7
-#INSERT INTO actors (name) VALUES ("Maggie Gyllenhaal"); -- 8
+aaron_eckhart = Actor.find_by(actor_name: "Aaron Eckhart")
+heath_ledger = Actor.find_by(actor_name: "Heath Ledger")
+maggie_gyllenhaal = Actor.find_by(actor_name: "Maggie Gyllenhaal")
 
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 1, "Bruce Wayne");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 6, "Joker");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 7, "Harvey Dent");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 2, "Alfred");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 8, "Rachel Dawes");
+Role.create([
+  { character_name: "Bruce Wayne", movie_id: dark_knight.id, actor_id: christian_bale.id },
+  { character_name: "Alfred", movie_id: dark_knight.id, actor_id: michael_caine.id },
+  { character_name: "Harvey Dent", movie_id: dark_knight.id, actor_id: aaron_eckhart.id },
+  { character_name: "Rachel Dawes", movie_id: dark_knight.id, actor_id: maggie_gyllenhaal.id },
+  { character_name: "Joker", movie_id: dark_knight.id, actor_id: heath_ledger.id }
+])
 
-#-- The Dark Knight Rises
-#INSERT INTO actors (name) VALUES ("Tom Hardy"); -- 9
-#INSERT INTO actors (name) VALUES ("Joseph Gordon-Levitt"); -- 10
-#INSERT INTO actors (name) VALUES ("Anne Hathaway"); -- 11
 
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 1, "Bruce Wayne");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 5, "Commissioner Gordon");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 9, "Bane");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 10, "John Blake");
-#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 11, "Selina Kyle");
+# -- The Dark Knight Rises
+
+dark_knight_rises = Movie.find_by({ "title" => "The Dark Knight Rises" })
+
+tom_hardy = Actor.find_by(actor_name: "Tom Hardy")
+joseph_gordon_levitt = Actor.find_by(actor_name: "Joseph Gordon-Levitt")
+anne_hathaway = Actor.find_by(actor_name: "Anne Hathaway")
+
+Role.create([
+  { character_name: "Bruce Wayne", movie_id: dark_knight_rises.id, actor_id: christian_bale.id },
+  { character_name: "Commissioner Gordon", movie_id: dark_knight_rises.id, actor_id: gary_oldman.id },
+  { character_name: "Bane", movie_id: dark_knight_rises.id, actor_id: tom_hardy.id },
+  { character_name: "John Blake", movie_id: dark_knight_rises.id, actor_id: joseph_gordon_levitt.id },
+  { character_name: "Selina Kyle", movie_id: dark_knight_rises.id, actor_id: anne_hathaway.id }
+])
+
 
 
 # Successful sample output is as shown:
