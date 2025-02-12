@@ -289,10 +289,14 @@ puts "Movies"
 puts "======"
 puts ""
 
-Movie.all.each do |movie|
-  studio_name = movie.studio.studio_name  
-  puts "#{movie.title.ljust(22)} #{movie.year_released}  #{movie.rating.ljust(7)} #{studio_name}"
+movies = Movie.all
+
+for movie in movies do
+  studio_name = movie.studio.studio_name 
+  puts "#{movie.title.ljust(22)} #{movie.year_released.to_s.ljust(12)} #{movie.rating.ljust(7)} #{studio_name}"
 end
+
+puts ""
 
 # Display Top Cast
 
@@ -300,9 +304,10 @@ puts "Top Cast"
 puts "========"
 puts ""
 
-Movie.all.each do |movie|
-  movie.roles.each do |role|
-    puts "#{movie.title.ljust(22)} #{role.actor.actor_name.ljust(20)} #{role.character_name}"
+for movie in movies do
+  for role in movie.roles do
+    actor_name = role.actor.actor_name  
+    character_name = role.character_name  
+    puts "#{movie.title.ljust(22)} #{actor_name.ljust(22)} #{character_name}"
   end
 end
-
