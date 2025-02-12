@@ -48,6 +48,27 @@
 #   URL for the finished "hw2" repository as the "Website URL" for the 
 #   Homework 2 assignment in Canvas
 
+# Class definitions
+
+class Movie < ApplicationRecord
+  belongs_to :studio
+end
+
+class Studio < ApplicationRecord
+  has_many :movies
+end
+
+class Movie < ApplicationRecord
+  belongs_to :studio
+  has_many :roles  
+  has_many :actors, through: :roles 
+end
+
+class Role < ApplicationRecord
+  belongs_to :movie
+  belongs_to :actor
+end
+
 
 Studio.destroy_all
 Movie.destroy_all
@@ -253,20 +274,35 @@ Role.create([
 # TODO!
 
 # Prints a header for the movies output
-puts "Movies"
-puts "======"
-puts ""
-
-
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
 
 
 
 # Prints a header for the cast output
+# Query the cast data and loop through the results to display the cast output for each movie.
+# TODO!
+
+# Display Movies
+
+puts "Movies"
+puts "======"
 puts ""
+
+Movie.all.each do |movie|
+  studio_name = movie.studio.studio_name  
+  puts "#{movie.title.ljust(22)} #{movie.year_released}  #{movie.rating.ljust(7)} #{studio_name}"
+end
+
+# Display Top Cast
+
 puts "Top Cast"
 puts "========"
 puts ""
-# Query the cast data and loop through the results to display the cast output for each movie.
-# TODO!
+
+Movie.all.each do |movie|
+  movie.roles.each do |role|
+    puts "#{movie.title.ljust(22)} #{role.actor.actor_name.ljust(20)} #{role.character_name}"
+  end
+end
+
